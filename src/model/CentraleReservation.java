@@ -28,5 +28,4 @@ public class CentraleReservation <E extends EntiteReservable <F>, F extends Form
 		formulaire.setIdentificationEntite(numEntiteAReserver);
 		return entites[numEntiteAReserver-1].reserver(formulaire);
 	}
-	
 }

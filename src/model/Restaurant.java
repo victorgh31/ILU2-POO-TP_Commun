@@ -2,7 +2,7 @@ package model;
 
 public class Restaurant implements IEtablissement <FormulaireRestaurant> {
 	private static final int NB_MAX_TABLES = 30;
-	private CentraleReservation<Table,FormulaireRestaurant> centrale = new CentraleReservation<>(new Table[NB_MAX_TABLES]);
+	private CentraleReservation <Table, FormulaireRestaurant> centrale = new CentraleReservation<>(new Table[NB_MAX_TABLES]);
 	
 	public Restaurant() {
 	}
@@ -18,10 +18,10 @@ public class Restaurant implements IEtablissement <FormulaireRestaurant> {
 		
 		@Override
 		public boolean compatible(FormulaireRestaurant formulaire) {
-			return  (  formulaire.getNombrePersonnes() == nombreChaises
-					|| formulaire.getNombrePersonnes() == (nombreChaises - 1)
-					? getCalendrier().estLibre(formulaire.getJour(),formulaire.getMois())
-							: calendrierDeuxiemeService.estLibre(formulaire.getJour(), formulaire.getMois())); 
+			return (formulaire.getNombrePersonnes() == nombreChaises
+				|| formulaire.getNombrePersonnes() == (nombreChaises - 1)
+				&& (formulaire.getNumService() == 1 ? getCalendrier().estLibre(formulaire.getJour(),formulaire.getMois())
+				: calendrierDeuxiemeService.estLibre(formulaire.getJour(), formulaire.getMois()))); 
 		}
 		
 		@Override
