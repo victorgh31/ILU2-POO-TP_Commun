@@ -1,14 +1,18 @@
 package dialog;
 
 import java.awt.EventQueue;
-
 import javax.swing.AbstractListModel;
-
 import com.github.lgooddatepicker.zinternaltools.DateChangeEvent;
 
+import control.ControlCreerClient;
 import control.ControlReserverTable;
 import control.ControlVisualiserCarnetClientele;
+import interface_noyau_fonctionnel.AdaptateurDuNoyauFonctionnel;
+import model.CarnetClientele;
 import presentation.JFrameReservation;
+
+import presentation.PresentationJFrameModeAdministrateur;
+import presentation.PresentationJFrameCreationClient;
 
 public class DialogueReservation {
 	
@@ -28,10 +32,18 @@ public class DialogueReservation {
 	
 	private JFrameReservation presentationReservation;
 	
-	public DialogueReservation(ControlReserverTable controlReserverTable,ControlVisualiserCarnetClientele controlClientele) {
-		this.controlReserverTable = controlReserverTable;
-		this.contrClientele = controlClientele;
-
+	private CarnetClientele carnetClientel;
+	private ControlCreerClient controlCreerClient;
+	
+	private AdaptateurDuNoyauFonctionnel adaptateur;
+//	public DialogueReservation(ControlReserverTable controlReserverTable,ControlVisualiserCarnetClientele controlClientele) {
+//		this.controlReserverTable = controlReserverTable;
+//		this.contrClientele = controlClientele;
+//
+//	}
+	
+	public DialogueReservation(AdaptateurDuNoyauFonctionnel adaptateur) {
+		this.adaptateur = adaptateur;
 	}
 	
 	public void handleUserConnected(int numClient) {
@@ -86,26 +98,5 @@ public class DialogueReservation {
 	public void handleOkEvent() {
 		presentationReservation.initPresentation();
 	}
-	
-	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		
-		//Create dialogReservation
-		DialogueReservation dialogReservation = new DialogueReservation();
-				
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					dialogReservation.initDialog();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	
 	
 }

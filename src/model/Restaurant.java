@@ -18,10 +18,13 @@ public class Restaurant implements IEtablissement <FormulaireRestaurant> {
 		
 		@Override
 		public boolean compatible(FormulaireRestaurant formulaire) {
-			return (formulaire.getNombrePersonnes() == nombreChaises
-				|| formulaire.getNombrePersonnes() == (nombreChaises - 1)
+			return (formulaire.getNombrePersonnes() <= nombreChaises
 				&& (formulaire.getNumService() == 1 ? getCalendrier().estLibre(formulaire.getJour(),formulaire.getMois())
-				: calendrierDeuxiemeService.estLibre(formulaire.getJour(), formulaire.getMois()))); 
+				: calendrierDeuxiemeService.estLibre(formulaire.getJour(), formulaire.getMois())));
+//			return (formulaire.getNombrePersonnes() == nombreChaises
+//					|| formulaire.getNombrePersonnes() == (nombreChaises - 1)
+//					&& (formulaire.getNumService() == 1 ? getCalendrier().estLibre(formulaire.getJour(),formulaire.getMois())
+//					: calendrierDeuxiemeService.estLibre(formulaire.getJour(), formulaire.getMois())));
 		}
 		
 		@Override

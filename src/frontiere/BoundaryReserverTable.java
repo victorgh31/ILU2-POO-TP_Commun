@@ -27,12 +27,21 @@ public class BoundaryReserverTable {
 		int[] possibilites = control.trouverPossibilite(jour, mois, nombrePersonnes, numService);
 		
 		for (int i = 1 ; i < possibilites.length ; i++) {
-			System.out.println("numéro de table :");
-			System.out.println("- " + possibilites[i]);
+			if (possibilites[i] != 0)
+				System.out.println("numéro de table : " + possibilites[i]);
 		}
 		
 		System.out.println("Choississez votre table");
 		int numTable = clavier.nextInt();
 		control.reserver(numClient, numTable, possibilites[0]);
+		
+		String service;
+		if (numService == 1)
+			service = "premier";
+		else
+			service = "deuxième";
+		
+		System.out.println("Réservation : ");
+		System.out.println("Le " + jour + "/" + mois + " : table n°" + numTable + " pour le " + service + " service.");
 	}
 }	
